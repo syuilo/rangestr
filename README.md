@@ -20,7 +20,7 @@ rangestr(source[, options])
 | Property      | Type                   | Description                        | Default                     |
 | :------------ | :--------------------- | :--------------------------------- | :-------------------------- |
 | **ellipsis**  | *string* or *string[]* | Ellipsis that represents the range | `[ '-', '~', '..', '...' ]` |
-| **saveOrder** | *boolean*              | Whether to keep the order          | `true`                      |
+| **keepOrder** | *boolean*              | Whether to keep the order          | `true`                      |
 
 ## Example
 ``` javascript

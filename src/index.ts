@@ -1,6 +1,6 @@
 export type Options = {
 	ellipsis?: string | string[];
-	saveOrder?: boolean;
+	keepOrder?: boolean;
 };
 
 const defaultOptions: Options = {
@@ -10,12 +10,12 @@ const defaultOptions: Options = {
 		'..',
 		'...'
 	],
-	saveOrder: true
+	keepOrder: true
 };
 
 function parse(source: string, options?: Options): string[] {
 	const opts = options || {};
-	const saveOrder = opts.saveOrder !== undefined ? opts.saveOrder : defaultOptions.saveOrder;
+	const keepOrder = opts.keepOrder !== undefined ? opts.keepOrder : defaultOptions.keepOrder;
 	const ellipsis = opts.ellipsis || defaultOptions.ellipsis;
 	const ellipsises = Array.isArray(ellipsis) ? ellipsis : [ellipsis];
 	ellipsises.sort((a, b) => a.length < b.length ? 1 : -1);
@@ -33,7 +33,7 @@ function parse(source: string, options?: Options): string[] {
 			if (source.substr(i + 1, ellipsis.length) === ellipsis && source[i + 1 + ellipsis.length] !== undefined) {
 				const begin = source[i];
 				const end = source[i + 1 + ellipsis.length];
-				Array.prototype.push.apply(chars, iterate(begin, end, saveOrder));
+				Array.prototype.push.apply(chars, iterate(begin, end, keepOrder));
 				i += 1 + ellipsis.length;
 				return true;
 			} else {
@@ -49,7 +49,7 @@ function parse(source: string, options?: Options): string[] {
 	return chars;
 }
 
-function iterate(begin: string, end: string, saveOrder = true): string[] {
+function iterate(begin: string, end: string, keepOrder = true): string[] {
 	const chars: string[] = [];
 
 	const beginCharCode = begin.charCodeAt(0);
@@ -62,7 +62,7 @@ function iterate(begin: string, end: string, saveOrder = true): string[] {
 		chars.push(String.fromCharCode(i));
 	}
 
-	return saveOrder
+	return keepOrder
 		? order ? chars : chars.reverse()
 		: chars;
 }
