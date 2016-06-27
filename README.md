@@ -13,7 +13,7 @@ $ npm install rangestr --save
 
 ## Usage
 ``` javascript
-rangestr(source, options)
+rangestr(source[, options])
 ```
 
 ### Options
