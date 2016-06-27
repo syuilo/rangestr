@@ -11,6 +11,17 @@ Range syntax parser
 $ npm install rangestr --save
 ```
 
+## Usage
+``` javascript
+rangestr(source, options)
+```
+
+### Options
+| Property      | Type                   | Description                        | Default                     |
+| :------------ | :--------------------- | :--------------------------------- | :-------------------------- |
+| **ellipsis**  | *string* or *string[]* | Ellipsis that represents the range | `[ '-', '~', '..', '...' ]` |
+| **saveOrder** | *boolean*              | Whether to keep the order          | `true`                      |
+
 ## Example
 ``` javascript
 const rangestr = require('rangestr');
@@ -35,7 +46,6 @@ rangestr('a-f!#$%&@-');
 
 rangestr('あ-ん'); // or rangestr('あ', 'ん');
 // = [ 'あ', 'ぃ', 'い', 'ぅ', 'う', 'ぇ', 'え', 'ぉ', 'お', 'か', 'が', 'き', 'ぎ', 'く', 'ぐ', 'け', 'げ', 'こ', 'ご', 'さ', 'ざ', 'し', 'じ', 'す', 'ず', 'せ', 'ぜ', 'そ', 'ぞ', 'た', 'だ', 'ち', 'ぢ', 'っ', 'つ', 'づ', 'て', 'で', 'と', 'ど', 'な', 'に', 'ぬ', 'ね', 'の', 'は', 'ば', 'ぱ', 'ひ', 'び', 'ぴ', 'ふ', 'ぶ', 'ぷ', 'へ', 'べ', 'ぺ', 'ほ', 'ぼ', 'ぽ', 'ま', 'み', 'む', 'め', 'も', 'ゃ', 'や', 'ゅ', 'ゆ', 'ょ', 'よ', 'ら', 'り', 'る', 'れ', 'ろ', 'ゎ', 'わ', 'ゐ', 'ゑ', 'を', 'ん' ]
-
 ```
 
 ## On TypeScript
