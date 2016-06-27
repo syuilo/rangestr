@@ -1,4 +1,15 @@
-function rangestr(source: string): string[] {
+function rangestr(source: string): string[];
+function rangestr(begin: string, end: string): string[];
+
+function rangestr(x: string, y?: string): string[] {
+	if (typeof y === 'undefined') {
+		return parse(x);
+	} else {
+		return iterate(x, y);
+	}
+}
+
+function parse(source: string): string[] {
 	const chars: string[] = [];
 
 	for (let i = 0; i < source.length; i++) {
@@ -8,19 +19,26 @@ function rangestr(source: string): string[] {
 		} else if (source[i + 1] === '-' && source[i + 2] !== undefined) {
 			const begin = source[i];
 			const end = source[i + 2];
-			const beginCharCode = begin.charCodeAt(0);
-			const endCharCode = end.charCodeAt(0);
-			const minCharCode = beginCharCode < endCharCode ? beginCharCode : endCharCode;
-			const maxCharCode = beginCharCode < endCharCode ? endCharCode : beginCharCode;
-
-			for (let c = minCharCode; c <= maxCharCode; c++) {
-				chars.push(String.fromCharCode(c));
-			}
-
+			Array.prototype.push.apply(chars, iterate(begin, end));
 			i += 2;
 		} else {
 			chars.push(source[i]);
 		}
+	}
+
+	return chars;
+}
+
+function iterate(begin: string, end: string): string[] {
+	const chars: string[] = [];
+
+	const beginCharCode = begin.charCodeAt(0);
+	const endCharCode = end.charCodeAt(0);
+	const minCharCode = beginCharCode < endCharCode ? beginCharCode : endCharCode;
+	const maxCharCode = beginCharCode < endCharCode ? endCharCode : beginCharCode;
+
+	for (let i = minCharCode; i <= maxCharCode; i++) {
+		chars.push(String.fromCharCode(i));
 	}
 
 	return chars;
