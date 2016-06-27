@@ -34,14 +34,15 @@ function iterate(begin: string, end: string): string[] {
 
 	const beginCharCode = begin.charCodeAt(0);
 	const endCharCode = end.charCodeAt(0);
-	const minCharCode = beginCharCode < endCharCode ? beginCharCode : endCharCode;
-	const maxCharCode = beginCharCode < endCharCode ? endCharCode : beginCharCode;
+	const order = beginCharCode < endCharCode;
+	const min = order ? beginCharCode : endCharCode;
+	const max = order ? endCharCode : beginCharCode;
 
-	for (let i = minCharCode; i <= maxCharCode; i++) {
+	for (let i = min; i <= max; i++) {
 		chars.push(String.fromCharCode(i));
 	}
 
-	return chars;
+	return order ? chars : chars.reverse();
 }
 
 Object.defineProperty(rangestr, "default", { value: rangestr });
