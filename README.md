@@ -1,6 +1,8 @@
 rangestr.js
 -------------------------------
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/syuilo/rangestr.svg)](https://greenkeeper.io/)
+
 [![][npm-badge]][npm-link]
 [![][mit-badge]][mit]
 
